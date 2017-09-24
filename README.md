@@ -1,8 +1,7 @@
 # frozen-smeagol
 
-generated using Luminus version "2.9.11.89"
-
-This is an experiment to see whether we can render `smeagol` content client side. If successful it will probably be integrated with `smeagol`.
+Frozen-Smeagol is essentially a single-page app which renders markdown files from a specified directory into a page framed with some common HTML. As such it may be useful to you and is certainly
+something which you may want to adapt or incorporate into other projects; as such it is BSD licensed, rather than GPL which I normally use.
 
 ## Prerequisites
 
@@ -16,7 +15,10 @@ To start a web server for the application, run:
 
     lein run
 
-## License
+Markdown files are served from the directory `resources/public/content`.
+
+## Licence
 
 Copyright © 2017 Simon Brooke
-ß
+
+Licence is BSD; see the LICENSE file.
