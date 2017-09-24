@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smeagol: <span class="title"></span></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% style "/content/stylesheet.css" %}
+  </head>
+  <body>
+    <header class="wiki">
+      <!-- navbar -->
+      <div id="nav">
+        <img id="nav-icon" src="{{servlet-context}}/img/three-lines.png" alt="Menu"/>
+        <div id="phone-side-bar"  class="wiki">
+            {{side-bar|safe}}
+          <div id="phone-credits">
+            <p>
+              <img height="16" width="16" alt="one wiki to rule them all"
+                   src="img/smeagol.png"/>One Wiki to rule them all ||
+              Smeagol wiki engine {{version}} ||
+              <img height="16" width="16"
+                   alt="The Web Engineering Factory &amp; Toolworks"
+                  src="http://www.weft.scot/images/weft.logo.64.png">
+              Developed by <a href="http://www.weft.scot/">WEFT</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <h1>Smeagol: <span class="title"></span></h1>
+    </header>
+    <div id="side-bar"  class="wiki">
+      <p>
+        (generated at freeze time)
+      </p>
+    </div>
+
+    <div id="main-container" class="container">
+      <div id="content" class="wiki">
+      </div>
+    </div>
+
+
+    <div id="app">
+      <div class="container-fluid">
+        <div class="card-deck">
+          <div class="card-block">
+            <h4>Welcome to frozen-smeagol</h4>
+            <p>If you're seeing this message, that means you haven't yet compiled your ClojureScript!</p>
+            <p>Please run <code>lein figwheel</code> to start the ClojureScript compiler and reload the page.</p>
+            <h4>For better ClojureScript development experience in Chrome follow these steps:</h4>
+            <ul>
+              <li>Open DevTools
+              <li>Go to Settings ("three dots" icon in the upper right corner of DevTools > Menu > Settings F1 > General > Console)
+              <li>Check-in "Enable custom formatters"
+              <li>Close DevTools
+              <li>Open DevTools
+            </ul>
+            <p>See <a href="http://www.luminusweb.net/docs/clojurescript.md">ClojureScript</a> documentation for further details.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- scripts and styles -->
+    <script type="text/javascript">
+        var context = "{{servlet-context}}";
+        var csrfToken = "{{csrf-token}}";
+    </script>
+    {% script "/js/app.js" %}
+  </body>
+</html>
