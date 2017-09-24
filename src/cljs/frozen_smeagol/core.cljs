@@ -3,28 +3,20 @@
   (:require [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
             [clojure.string :as s]
+            [frozen-smeagol.transformer :refer [local-link-transformer]]
             [markdown.core :refer [md->html]]))
-
-(defn local-link-transformer
-  [line state]
-  (s/replace
-    (s/replace
-     line
-     #"\[\["
-     "<span class='local-link'>")
-   #"\]\]" "</span>"))
 
 (defn show-content [title]
   (go
-   (let [response
-         (<! (http/get (str "/content/" title ".md")))
-         content (js/document.getElementById "content")]
-
-    (set!
-     (.-innerHTML content)
-     (md->html
-      (:body response)
-      :custom-transformers [local-link-transformer])))))
+    (let [response
+          (<! (http/get (str "/content/" title ".md")))
+          content (js/document.getElementById "content")
+          page-title (js/document.getElementById "page-title")]
+      (set! (.-innerHTML page-title) title)
+      (set!
+        (.-innerHTML content)
+        (local-link-transformer
+          (md->html (:body response)))))))
 
 (defn mount-components []
   (show-content "Introduction"))
@@ -32,4 +24,8 @@
 (defn init! []
   (mount-components))
 
+(defn ^:export click-handler [elt]
+  (let [file-name (.-innerHTML elt)]
+    (js/console.log (str "got " file-name))
+    (show-content file-name)))
 
